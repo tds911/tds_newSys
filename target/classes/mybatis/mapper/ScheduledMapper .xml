@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tds.project.mapper.ScheduledMapper">
+    <resultMap id="scheduled" type="com.tds.project.domain.Scheduled">
+        <result column="id" property="id"/>
+        <result column="task_key" property="taskKey"/>
+        <result column="name" property="name"/>
+        <result column="cron" property="cron"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+    <select id="selectByExample" resultMap="scheduled">
+        select *
+        from scheduled
+    </select>
+
+    <update id="updateSchedule" parameterType="Scheduled">
+        update scheduled
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id !=null">id=#{id},</if>
+            <if test="taskKey !=null">task_key=#{taskKey},</if>
+            <if test="name !=null">name=#{name},</if>
+            <if test="cron !=null">cron=#{cron},</if>
+            <if test="status !=null">status=#{status},</if>
+            <if test="createTime !=null">create_time=#{createTime},</if>
+            <if test="updateTime !=null">update_time=#{updateTime},</if>
+        </trim>
+            where id=#{id}
+    </update>
+</mapper>

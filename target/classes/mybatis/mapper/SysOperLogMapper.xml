@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tds.project.mapper.SysOperLogMapper">
+    <resultMap id="OperLogResult" type="SysOperLog">
+        <result property="operId" column="oper_id"/>
+        <result property="title" column="title"/>
+        <result property="businessType" column="business_type"/>
+        <result property="method" column="method"/>
+        <result property="requestMethod" column="request_method"/>
+        <result property="operatorType" column="operator_type"/>
+        <result property="operName" column="oper_name"/>
+        <result property="deptName" column="dept_name"/>
+        <result property="operUrl" column="oper_url"/>
+        <result property="operIp" column="oper_ip"/>
+        <result property="operLocation" column="oper_location"/>
+        <result property="operParam" column="oper_param"/>
+        <result property="operResult" column="oper_result"/>
+        <result property="status" column="status"/>
+        <result property="errorMsg" column="error_msg"/>
+        <result property="operTime" column="oper_time"/>
+        <result property="methodTitle" column="method_title"/>
+    </resultMap>
+    <sql id="selectOperLogVo">
+        select oper_id,
+               title,
+               business_type,
+               method,
+               request_method,
+               operator_type,
+               oper_name,
+               dept_name,
+               oper_url,
+               oper_ip,
+               oper_location,
+               oper_param,
+               oper_result,
+               status,
+               error_msg,
+               oper_time,
+               method_title from sys_oper_log
+    </sql>
+
+    <select id="selectOperLogList" parameterType="SysOperLog" resultMap="OperLogResult">
+        <include refid="selectOperLogVo"/>
+        <where>
+        </where>
+    </select>
+
+    <select id="selectOperLogById" parameterType="Long" resultMap="OperLogResult">
+    </select>
+
+
+    <insert id="insetOperLog" parameterType="SysOperLog">
+        insert into sys_oper_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="operId !=null">oper_id,
+            </if>
+            <if test="title !=null">title,
+            </if>
+            <if test="businessType !=null">business_type,
+            </if>
+            <if test="method !=null">method,
+            </if>
+            <if test="requestMethod !=null">request_method,
+            </if>
+            <if test="operatorType !=null">operator_type,
+            </if>
+            <if test="operName !=null">oper_name,
+            </if>
+            <if test="deptName !=null">dept_name,
+            </if>
+            <if test="operUrl !=null">oper_url,
+            </if>
+            <if test="operIp !=null">oper_ip,
+            </if>
+            <if test="operLocation !=null">oper_location,
+            </if>
+            <if test="operParam !=null">oper_param,
+            </if>
+            <if test="operResult !=null">oper_result,
+            </if>
+            <if test="status !=null">status,
+            </if>
+            <if test="errorMsg !=null">error_msg,
+            </if>
+            <if test="operTime !=null">oper_time,
+            </if>
+            <if test="methodTitle !=null">method_title,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="operId !=null">#{operId},
+            </if>
+            <if test="title !=null">#{title},
+            </if>
+            <if test="businessType !=null">#{businessType},
+            </if>
+            <if test="method !=null">#{method},
+            </if>
+            <if test="requestMethod !=null">#{requestMethod},
+            </if>
+            <if test="operatorType !=null">#{operatorType},
+            </if>
+            <if test="operName !=null">#{operName},
+            </if>
+            <if test="deptName !=null">#{deptName},
+            </if>
+            <if test="operUrl !=null">#{operUrl},
+            </if>
+            <if test="operIp !=null">#{operIp},
+            </if>
+            <if test="operLocation !=null">#{operLocation},
+            </if>
+            <if test="operParam !=null">#{operParam},
+            </if>
+            <if test="operResult !=null">#{operResult},
+            </if>
+            <if test="status !=null">#{status},
+            </if>
+            <if test="errorMsg !=null">#{errorMsg},
+            </if>
+            <if test="operTime !=null">#{operTime},
+            </if>
+            <if test="methodTitle !=null">#{methodTitle},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateOperLog" parameterType="SysOperLog">
+        update sys_oper_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title !=null">title =
+                #{title},
+            </if>
+            <if test="businessType !=null">business_type =
+                #{businessType},
+            </if>
+            <if test="method !=null">method =
+                #{method},
+            </if>
+            <if test="requestMethod !=null">request_method =
+                #{requestMethod},
+            </if>
+            <if test="operatorType !=null">operator_type =
+                #{operatorType},
+            </if>
+            <if test="operName !=null">oper_name =
+                #{operName},
+            </if>
+            <if test="deptName !=null">dept_name =
+                #{deptName},
+            </if>
+            <if test="operUrl !=null">oper_url =
+                #{operUrl},
+            </if>
+            <if test="operIp !=null">oper_ip =
+                #{operIp},
+            </if>
+            <if test="operLocation !=null">oper_location =
+                #{operLocation},
+            </if>
+            <if test="operParam !=null">oper_param =
+                #{operParam},
+            </if>
+            <if test="operResult !=null">oper_result =
+                #{operResult},
+            </if>
+            <if test="status !=null">status =
+                #{status},
+            </if>
+            <if test="errorMsg !=null">error_msg =
+                #{errorMsg},
+            </if>
+            <if test="operTime !=null">oper_time =
+                #{operTime},
+            </if>
+            <if test="methodTitle !=null">method_title =
+                #{methodTitle},
+            </if>
+        </trim>
+        where oper_id = #{operId}
+    </update>
+
+    <delete id="deleteOperLogById" parameterType="Long">
+        delete
+        from sys_oper_log
+        where oper_id = {operId}
+    </delete>
+
+    <delete id="deleteOperLogByIds" parameterType="String">
+        delete from sys_oper_log where oper_id in
+        <foreach collection="array" item="operId" open="(" separator="," close=")">
+            #{operId}
+        </foreach>
+    </delete>
+</mapper>

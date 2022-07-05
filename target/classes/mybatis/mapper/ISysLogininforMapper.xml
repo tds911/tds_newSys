@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tds.project.mapper.ISysLogininforMapper">
+
+    <insert id="insertLogininfor" parameterType="com.tds.project.domain.SysLogininfor">
+        <selectKey keyProperty="infoId" resultType="long" order="BEFORE">
+            select seq_sys_logininfor.NEXTVAL as infoId from DUAL
+        </selectKey>
+        insert into sys_logininfor(info_id,user_name,status,ipaddr,login_location,browser,os,msg,login_time)values
+        (#{infoId},#{userName},#{status},#{ipaddr},#{loginLocation},#{browser},#{os},#{msg},sysdate)
+    </insert>
+
+</mapper>

@@ -1,0 +1,64 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: oracle.jdbc.driver.OracleDriver
+        druid:
+            master:
+            url: jdbc:oracle:thin:@localhost:1521:orcl
+            username: C##tds
+            password: 123456
+
+    servlet:
+      multipart:
+          max-file-size: 300MB
+          max-request-size: 500MB
+    main:
+        allow-bean-definition-overriding: true
+        allow-circular-references: true
+
+    redis:
+        database: 1
+        host: 127.0.0.1
+        port: 6379
+        connect-timeout: 10s
+        lettuce:
+          pool:
+              min-idle: 0
+              max-wait: -1ms
+              max-active: 8
+              max-idle: 8
+    messages:
+        basename: i18n/messages
+server:
+    port: 8081
+
+
+
+mybatis:
+    typeAliasesPackage: com.tds.project.domain
+    mapperLocations: classpath*:mybatis/mapper/*Mapper.xml
+    configLocation: classpath:mybatis/mybatis-config.xml
+
+token:
+    header: Authorization
+    secret: abcdefghijklmnopqrstuvwxyz
+    expireTime: 480
+    enabled: false
+gen:
+    author: tds
+    packageName: com.tds.project.system
+    autoRemovePre: false
+    tablePrefix: sys_
+
+pagehelper:
+    helper-dialect: oracle
+    reasonable: true
+    support-methods-arguments: true
+    params: count=countSql
+
+logging:
+    level:
+        com:
+            om: debug
+        org:
+            springframework: warn
