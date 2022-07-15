@@ -6,6 +6,7 @@ import com.tds.common.utils.page.TableDateInfo;
 import com.tds.common.web.controller.BaseController;
 import com.tds.common.web.domain.server.AjaxResult;
 
+import com.tds.common.web.page.TableDataInfo;
 import com.tds.project.domain.SysJob;
 import com.tds.project.service.SysJobService;
 import org.quartz.SchedulerException;
@@ -21,7 +22,7 @@ public class SysJobController extends BaseController {
     private SysJobService jobService;
 
     @GetMapping("/list")
-    public TableDateInfo list( SysJob sysJob) {
+    public TableDataInfo list(SysJob sysJob) {
         startPage();
 
         List<SysJob> list = jobService.selectJobList(sysJob);

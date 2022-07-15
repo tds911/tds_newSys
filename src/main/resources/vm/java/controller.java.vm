@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ${packageName}.domain.${ClassNme};
+import ${packageName}.domain.${ClassName};
 import ${packageName}.service.${ClassName}Service;
 import com.tds.common.web.controller.BaseController;
 import com.tds.common.web.domain.server.AjaxResult;
@@ -27,7 +27,7 @@ import com.tds.common.web.page.TableDataInfo;
  */
 @RestController
 @RequestMapping("/${moduleName}/${businessName}" )
-public class ${ClassName}Conrtoller extends BaseController {
+public class ${ClassName}Controller extends BaseController {
     @Autowired
     private ${ClassName}Service ${className}Service;
 
@@ -53,9 +53,9 @@ public class ${ClassName}Conrtoller extends BaseController {
      * 获取${functionName}详细信息
      */
     @PreAuthorize("@ss.haspermi('${permissionPrefix}:list')" )
-    @GetMapping(value = "/{${pkColumn.javaField}" )
+    @GetMapping(value = "/{${pkColumn.javaField}}" )
     public AjaxResult getInfo(@PathVariable("${pkColumn.javaField}" )${pkColumn.javaType} ${pkColumn.javaField}) {
-        return AjaxResult.success(${className}Service.select${ClassName}ById(${pkColmn.javaField}));
+        return AjaxResult.success(${className}Service.select${ClassName}ById(${pkColumn.javaField}));
     }
 
     /**

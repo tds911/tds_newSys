@@ -61,3 +61,4 @@ public interface ${ClassName}Service {
      * @return 结果
      */
     public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s)
+}

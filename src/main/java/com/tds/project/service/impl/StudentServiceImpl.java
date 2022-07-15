@@ -6,6 +6,7 @@ import com.tds.project.domain.Student;
 
 import com.tds.project.mapper.StudentMapper;
 import com.tds.project.service.StudentService;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -186,4 +187,6 @@ public class StudentServiceImpl implements StudentService {
                 }});
         return template;
     }
+
+
 }

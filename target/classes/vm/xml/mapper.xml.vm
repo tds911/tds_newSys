@@ -61,7 +61,7 @@
     </select>
 
 
-    <insert id="inset${ClassName}" parameterType="${ClassName}">
+    <insert id="insert${ClassName}" parameterType="${ClassName}">
         #if($pkColumn.increment)
             <selectKey keyProperty="${pkColumn.javaField}" resultType="long" order="BEFORE">
                 SELECT seq_${tableName}.NEXTVAL as ${pkColumn.javaField} FROM DUAL
@@ -94,7 +94,7 @@
 
     <delete id="delete${ClassName}ById" parameterType="${pkColumn.javaType}">
         delete
-        from ${tableName} where ${pkColumn.columnName} = {${pkColumn.javaField}}
+        from ${tableName} where ${pkColumn.columnName} = #{${pkColumn.javaField}}
     </delete>
 
     <delete id="delete${ClassName}ByIds" parameterType="String">

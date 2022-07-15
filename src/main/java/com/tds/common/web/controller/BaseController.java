@@ -10,6 +10,7 @@ import com.tds.common.utils.page.PageDomain;
 import com.tds.common.utils.page.TableDateInfo;
 import com.tds.common.utils.page.TableSupport;
 import com.tds.common.web.domain.server.AjaxResult;
+import com.tds.common.web.page.TableDataInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
@@ -42,8 +43,8 @@ public class BaseController {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected TableDateInfo getDataTable(List<?> list) {
-        TableDateInfo rspData = new TableDateInfo();
+    protected TableDataInfo getDataTable(List<?> list) {
+        TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(HttpStatus.SUCCESS);
         rspData.setMsg("查询成功");
         rspData.setRows(list);
@@ -52,8 +53,8 @@ public class BaseController {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected TableDateInfo getDtaTable2(List<?> list, int csTotal) {
-        TableDateInfo rspData = new TableDateInfo();
+    protected TableDataInfo getDtaTable2(List<?> list, int csTotal) {
+        TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(HttpStatus.SUCCESS);
         rspData.setMsg("查询成功");
         rspData.setRows(list);
@@ -63,8 +64,8 @@ public class BaseController {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected TableDateInfo getDataTable3(List<?> list, Object list2) {
-        TableDateInfo rspDate = new TableDateInfo();
+    protected TableDataInfo getDataTable3(List<?> list, Object list2) {
+        TableDataInfo rspDate = new TableDataInfo();
         rspDate.setCode(HttpStatus.SUCCESS);
         rspDate.setMsg("查询成功");
         rspDate.setRows(list);
@@ -74,8 +75,8 @@ public class BaseController {
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected TableDateInfo getDataTable4(List<?> list, Long total, Object list2) {
-        TableDateInfo rspDate = new TableDateInfo();
+    protected TableDataInfo getDataTable4(List<?> list, Long total, Object list2) {
+        TableDataInfo rspDate = new TableDataInfo();
         rspDate.setCode(HttpStatus.SUCCESS);
         rspDate.setMsg("查询成功");
         rspDate.setRows(list);

@@ -9,7 +9,7 @@ import ${packageName}.domain.${ClassName};
  * @author ${author}
  * @date ${datetime}
  */
-
+@Mapper
 public interface ${ClassName}Mapper {
 
     /**
@@ -60,5 +60,5 @@ public interface ${ClassName}Mapper {
      * @param ${pkColumn.javaField}需要删除的ID
      * @return 结果
      */
-    public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s)
+    public int delete${ClassName}ByIds(${pkColumn.javaType}[] ${pkColumn.javaField}s);
 }

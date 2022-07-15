@@ -1,9 +1,11 @@
 package com.tds.project.controller;
 
 import com.tds.common.utils.page.TableDateInfo;
+import com.tds.common.utils.poi.ExcelUtil;
 import com.tds.common.web.controller.BaseController;
 import com.tds.common.web.domain.server.AjaxResult;
 
+import com.tds.common.web.page.TableDataInfo;
 import com.tds.project.domain.SysJobLog;
 import com.tds.project.service.ISysJobLogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,7 @@ public class SysJobLogController extends BaseController {
     private ISysJobLogService jobLogService;
 
     @GetMapping("/list")
-    public TableDateInfo list(SysJobLog sysJobLog){
+    public TableDataInfo list(SysJobLog sysJobLog){
         startPage();
         List<SysJobLog>list=jobLogService.selectJobLogList(sysJobLog);
         return getDataTable(list);
@@ -28,9 +30,9 @@ public class SysJobLogController extends BaseController {
     @GetMapping("/export")
     public AjaxResult export(SysJobLog sysJobLog){
         List<SysJobLog> list=jobLogService.selectJobLogList(sysJobLog);
-//        ExcelUtil<SysJobLog> util=new ExcelUtil<SysJobLog>(SysJobLog.class);
-//        return util.exportExcel(list,"调度日志");
-        return null;
+        ExcelUtil<SysJobLog> util=new ExcelUtil<SysJobLog>(SysJobLog.class);
+        return util.exportExcel(list,"调度日志");
+
     }
 
     @GetMapping("/{jobLogIds}")

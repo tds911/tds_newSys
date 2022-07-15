@@ -1,11 +1,11 @@
-package ${packageName}.service.impl
+package ${packageName}.service.impl;
 import java.util.List;
-    #foreach($column in $columns)
-        #if($column.javaField =='createTime' || $column.javaField =='updateTime')
-        import com.tds.common.utils.DateUtils;
-            #break
-        #end
-    #end
+#foreach($column in $columns)
+#if($column.javaField =='createTime' || $column.javaField =='updateTime')
+import com.tds.common.utils.DateUtils;
+#break
+#end
+#end
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ${packageName}.mapper.${ClassName}Mapper;
@@ -20,7 +20,7 @@ import ${packageName}.service.${ClassName}Service;
 @Service
 public class ${ClassName}ServiceImpl implements ${ClassName}Service {
     @Autowired
-    private ${ClassName}Mapeer ${className}Mapper;
+    private ${ClassName}Mapper ${className}Mapper;
 
 
     /**
