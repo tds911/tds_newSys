@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tds.project.mapper.StudentinfoMapper">
+    <resultMap id="StudentinfoResult" type="com.tds.project.domain.Studentinfo">
+        <result property="pkValue" column="pk_value"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="sex" column="sex"/>
+        <result property="classs" column="class"/>
+        <result property="major" column="major"/>
+        <result property="studentid" column="studentid"/>
+        <result property="status" column="status"/>
+        <result property="address" column="address"/>
+        <result property="phone" column="phone"/>
+        <result property="birthdate" column="birthdate"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="college" column="college"/>
+    </resultMap>
+    <sql id="selectStudentinfoVo">
+        select *
+        from studentinfo
+    </sql>
+    <select id="selectStudentinfoList" parameterType="com.tds.project.domain.Studentinfo" resultMap="StudentinfoResult">
+        <include refid="selectStudentinfoVo"/>
+        <where>
+        <if test="params.pubParam !=null and params.pubParam !=''">
+        (pk_value like concat(concat('%',#{params.pubParam}),'%')
+        or name like concat(concat('%',#{params.pubParam}),'%')
+            or age like concat(concat('%',#{params.pubParam}),'%')
+            or sex like concat(concat('%',#{params.pubParam}),'%')
+            or class like concat(concat('%',#{params.pubParam}),'%')
+            or major like concat(concat('%',#{params.pubParam}),'%')
+            or studentid like concat(concat('%',#{params.pubParam}),'%')
+            or status like concat(concat('%',#{params.pubParam}),'%')
+            or address like concat(concat('%',#{params.pubParam}),'%')
+            or phone like concat(concat('%',#{params.pubParam}),'%')
+            or birthdate like concat(concat('%',#{params.pubParam}),'%')
+            or college like concat(concat('%',#{params.pubParam}),'%')
+            )
+        </if>
+        </where>
+order by create_time desc
+    </select>
+
+    <select id="selectStudentinfoById" parameterType="String" resultMap="StudentinfoResult">
+        select *
+        from studentinfo where pk_value = #{pkValue}
+    </select>
+
+
+    <insert id="insertStudentinfo" parameterType="com.tds.project.domain.Studentinfo">
+        insert into studentinfo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pkValue !=null">pk_value,</if>
+            <if test="name !=null">name,</if>
+            <if test="age !=null">age,</if>
+            <if test="sex !=null">sex,</if>
+            <if test="classs !=null">class,</if>
+            <if test="major !=null">major,</if>
+            <if test="studentid !=null">studentid,</if>
+            <if test="status !=null">status,</if>
+            <if test="address !=null">address,</if>
+            <if test="phone !=null">phone,</if>
+            <if test="birthdate !=null">birthdate,</if>
+            <if test="createBy !=null">create_by,</if>
+            <if test="createTime !=null">create_time,</if>
+            <if test="updateBy !=null">update_by,</if>
+            <if test="updateTime !=null">update_time,</if>
+            <if test="remark !=null">remark,</if>
+            <if test="college !=null">college,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="pkValue !=null">#{pkValue},</if>
+            <if test="name !=null">#{name},</if>
+            <if test="age !=null">#{age},</if>
+            <if test="sex !=null">#{sex},</if>
+            <if test="classs !=null">#{classs},</if>
+            <if test="major !=null">#{major},</if>
+            <if test="studentid !=null">#{studentid},</if>
+            <if test="status !=null">#{status},</if>
+            <if test="address !=null">#{address},</if>
+            <if test="phone !=null">#{phone},</if>
+            <if test="birthdate !=null">#{birthdate},</if>
+            <if test="createBy !=null">#{createBy},</if>
+            <if test="createTime !=null">#{createTime},</if>
+            <if test="updateBy !=null">#{updateBy},</if>
+            <if test="updateTime !=null">#{updateTime},</if>
+            <if test="remark !=null">#{remark},</if>
+            <if test="college !=null">#{college},</if>
+        </trim>
+    </insert>
+
+    <update id="updateStudentinfo" parameterType="com.tds.project.domain.Studentinfo">
+        update studentinfo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name !=null">name = #{name},</if>
+            <if test="age !=null">age = #{age},</if>
+            <if test="sex !=null">sex = #{sex},</if>
+            <if test="classs !=null">class = #{classs},</if>
+            <if test="major !=null">major = #{major},</if>
+            <if test="studentid !=null">studentid = #{studentid},</if>
+            <if test="status !=null">status = #{status},</if>
+            <if test="address !=null">address = #{address},</if>
+            <if test="phone !=null">phone = #{phone},</if>
+            <if test="birthdate !=null">birthdate = #{birthdate},</if>
+            <if test="createBy !=null">create_by = #{createBy},</if>
+            <if test="createTime !=null">create_time = #{createTime},</if>
+            <if test="updateBy !=null">update_by = #{updateBy},</if>
+            <if test="updateTime !=null">update_time = #{updateTime},</if>
+            <if test="remark !=null">remark = #{remark},</if>
+            <if test="college !=null">college = #{college},</if>
+        </trim>
+        where pk_value = #{pkValue}
+    </update>
+
+    <delete id="deleteStudentinfoById" parameterType="String">
+        delete
+        from studentinfo
+        where pk_value = #{pkValue}
+    </delete>
+
+    <delete id="deleteStudentinfoByIds" parameterType="String">
+        delete from studentinfo where pk_value in
+        <foreach collection="array" item="pkValue" open="(" separator="," close=")">
+            #{pkValue}
+        </foreach>
+    </delete>
+</mapper>

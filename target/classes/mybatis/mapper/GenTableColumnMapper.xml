@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tds.project.mapper.GenTableColumnMapper">
-    <resultMap id="GenTableColumnResult" type="GenTableColumn">
+    <resultMap id="GenTableColumnResult" type="com.tds.project.domain.GenTableColumn">
         <result property="columnId" column="column_id"/>
         <result property="tableId" column="table_id"/>
         <result property="columnName" column="column_name"/>
@@ -51,7 +51,8 @@
         from gen_table_column
     </sql>
 
-    <select id="selectGenTableColumnListByTableId" parameterType="GenTableColumn" resultMap="GenTableColumnResult">
+    <select id="selectGenTableColumnListByTableId" parameterType="com.tds.project.domain.GenTableColumn"
+            resultMap="GenTableColumnResult">
         <include refid="selectGenTableColumnVo"/>
         where table_id=#{tableId}
         order by sort
@@ -86,7 +87,7 @@
     </select>
 
 
-    <insert id="insertGenTableColumn" parameterType="GenTableColumn">
+    <insert id="insertGenTableColumn" parameterType="com.tds.project.domain.GenTableColumn">
         <selectKey keyProperty="columnId" resultType="long" order="BEFORE">
             select seq_gen_table_column.NEXTVAL as columnId from DUAL
         </selectKey>
@@ -135,22 +136,23 @@
         )
     </insert>
 
-    <update id="updateGenTableColumn" parameterType="GenTableColumn">
+    <update id="updateGenTableColumn" parameterType="com.tds.project.domain.GenTableColumn">
         update gen_table_column
         <set>
-            column_comment=#{columnComment},
-            java_type=#{javaType},
-            java_field=#{javaField},
-            is_insert=#{inInsert,jdbcType=CHAR},
-            is_edit=#{isEdit,jdbcType=CHAR},
-            is_list=#{isList,jdbcType=CHAR},
-            is_query=#{isQuery,jdbcType=CHAR},
-            is_required=#{isQuired,jdbcType=CHAR},
-            query_type=#{queryType},
-            html_type=#{htmlType},
-            dict_type=#{dictType},
-            sort=#{sort},
-            uodate_by=#{updateBy,jdbcType=VARCHAR},
+            <if test="columnName !=null and columnName !=''">column_name=#{columnName},</if>
+            <if test="columnComment !=null and columnComment !=''">column_comment=#{columnComment},</if>
+            <if test="javaType !=null and javaType !=''">java_type=#{javaType},</if>
+            <if test="javaField !=null and javaField !=''">java_field=#{javaField},</if>
+            <if test="isInsert !=null and isInsert !=''">is_insert=#{isInsert,jdbcType=CHAR},</if>
+            <if test="isEdit !=null and isEdit !=''">is_edit=#{isEdit,jdbcType=CHAR},</if>
+            <if test="isList !=null and isList !=''">is_list=#{isList,jdbcType=CHAR},</if>
+            <if test="isQuery !=null and isQuery !=''">is_query=#{isQuery,jdbcType=CHAR},</if>
+            <if test="isRequired !=null and isRequired !=''">is_required=#{isRequired,jdbcType=CHAR},</if>
+            <if test="queryType !=null and queryType !=''">query_type=#{queryType},</if>
+            <if test="htmlType !=null and htmlType !=''">html_type=#{htmlType},</if>
+            <if test="dictType !=null and dictType !=''">dict_type=#{dictType},</if>
+            <if test="sort !=null and sort !=''">sort=#{sort},</if>
+            <if test="updateBy !=null and updateBy !=''">uodate_by=#{updateBy,jdbcType=VARCHAR},</if>
             update_time=sysdate
         </set>
         where column_id=#{columnId}
@@ -158,8 +160,8 @@
 
     <delete id="deleteGenTableColumnByIds" parameterType="Long">
         delete from gen_table_column where table_id in
-    <foreach collection="array" item="tableId" open="(" separator="," close=")">
-        #{tableId}
-    </foreach>
+        <foreach collection="array" item="tableId" open="(" separator="," close=")">
+            #{tableId}
+        </foreach>
     </delete>
 </mapper>

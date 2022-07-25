@@ -84,7 +84,7 @@ public class SysUser extends BaseEntity{
         return isAdmin(this.userId);
     }
     public static boolean isAdmin(Long userId){
-        return userId != null && 1L==userId;
+        return userId != null && 1999L==userId;
     }
 
     public String getDelFlag() {

@@ -76,7 +76,8 @@
 
 
     <select id="selectDbTableList" parameterType="com.tds.project.domain.GenTable" resultMap="GneTableResult">
-        select lower(dt.table_name)as table_name,dtc.comments as table_comment,uo.created as create_time,uo.last_ddl_time
+        select lower(dt.table_name)as table_name,dtc.comments as table_comment,uo.created as
+        create_time,uo.last_ddl_time
         as update_time
         from user_tables dt,user_tab_comments dtc,user_objects uo
         where dt.table_name =dtc.table_name

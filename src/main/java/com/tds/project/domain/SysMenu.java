@@ -22,7 +22,25 @@ public class SysMenu extends BaseEntity{
     private String status;
     private String perms;
     private String icon;
+    private int pageNum;
+    private int pageSize;
     private List<SysMenu> children=new ArrayList<SysMenu>();
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public Long getMenuId() {
         return menuId;

@@ -34,8 +34,8 @@ public class ${ClassName}Controller extends BaseController {
 /**
  * 查询${functionName}列表
  */
-@PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')" )
-@GetMapping("/list" )
+    @PreAuthorize("@ss.hasPermi('${permissionPrefix}:list')" )
+    @GetMapping("/list" )
     #if($table.curd)
     public TableDataInfo list(${ClassName} ${className}) {
         startPage();

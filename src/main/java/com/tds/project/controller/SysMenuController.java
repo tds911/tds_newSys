@@ -1,5 +1,6 @@
 package com.tds.project.controller;
 
+import com.github.pagehelper.PageHelper;
 import com.tds.common.constant.Constants;
 import com.tds.common.constant.UserConstants;
 import com.tds.common.security.service.TokenService;
@@ -10,6 +11,7 @@ import com.tds.common.web.controller.BaseController;
 import com.tds.common.web.domain.TreeSelect;
 import com.tds.common.web.domain.server.AjaxResult;
 
+import com.tds.common.web.page.TableDataInfo;
 import com.tds.project.domain.SysMenu;
 import com.tds.project.domain.UserEntity;
 import com.tds.project.service.ISysMenuService;
@@ -27,12 +29,13 @@ public class SysMenuController extends BaseController {
     @Autowired
     private TokenService tokenService;
 
-    @GetMapping("/list")
-    public AjaxResult list(SysMenu menu) {
+    @PostMapping("/list")
+    public TableDataInfo list(@RequestBody SysMenu menu) {
         UserEntity userEntity = tokenService.getLoginUser(ServletUtils.getRequest());
         Long userId = userEntity.getUser().getUserId();
+        PageHelper.startPage(menu.getPageSize(),menu.getPageSize(),null);
         List<SysMenu> menus = menuService.selectMenuList(menu, userId);
-        return AjaxResult.success(menus);
+        return getDataTable(menus);
     }
 
     @GetMapping("/{menuId}")

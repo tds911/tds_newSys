@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.tds.project.mapper.GenTableMapper">
-    <resultMap id="GneTableResult" type="GenTable">
+    <resultMap id="GneTableResult" type="com.tds.project.domain.GenTable">
         <id property="tableId" column="table_id"/>
         <result property="tableName" column="table_name"/>
         <result property="tableComment" column="table_comment"/>
@@ -20,7 +20,7 @@
         <result property="remark" column="remark"/>
         <collection property="columns" javaType="java.util.List" resultMap="GenTableColumnResult"/>
     </resultMap>
-    <resultMap id="GenTableColumnResult" type="GenTableColumn">
+    <resultMap id="GenTableColumnResult" type="com.tds.project.domain.GenTableColumn">
         <result property="columnId" column="column_id"/>
         <result property="tableId" column="table_id"/>
         <result property="columnName" column="column_name"/>
@@ -62,7 +62,7 @@
                update_time
         from gen_table
     </sql>
-    <select id="selectGenTableList" parameterType="GenTable" resultMap="GneTableResult">
+    <select id="selectGenTableList" parameterType="com.tds.project.domain.GenTable" resultMap="GneTableResult">
         <include refid="selectGenTableVo"/>
         <where>
             <if test="tableName !=null and tableName!=''">
@@ -75,8 +75,9 @@
     </select>
 
 
-    <select id="selectDbTableList" parameterType="GenTable" resultMap="GneTableResult">
-        select lower(dt.table_name)as table_name,dtc.comments as table_comment,uo.created as create_time,uo.last_ddl_time
+    <select id="selectDbTableList" parameterType="com.tds.project.domain.GenTable" resultMap="GneTableResult">
+        select lower(dt.table_name)as table_name,dtc.comments as table_comment,uo.created as
+        create_time,uo.last_ddl_time
         as update_time
         from user_tables dt,user_tab_comments dtc,user_objects uo
         where dt.table_name =dtc.table_name
@@ -202,7 +203,7 @@
         select seq_sys_menu.nextval
         from dual
     </select>
-    <insert id="insertGenTable" parameterType="GenTable">
+    <insert id="insertGenTable" parameterType="com.tds.project.domain.GenTable">
         <selectKey keyProperty="tableId" resultType="long" order="BEFORE">
             select seq_gen_table.NEXTVAL as tableId FROM DUAL
         </selectKey>
@@ -237,7 +238,7 @@
         )
     </insert>
 
-    <update id="updateGenTable" parameterType="GenTable">
+    <update id="updateGenTable" parameterType="com.tds.project.domain.GenTable">
         update gen_table
         <set>
             <if test="tableId !=null">table_id=#{tableId},</if>

@@ -38,7 +38,7 @@
         from sys_menu
     </sql>
 
-    <select id="selectMenuLit" parameterType="com.tds.project.domain.SysMenu" resultMap="sysMenu">
+    <select id="selectMenuList" parameterType="com.tds.project.domain.SysMenu" resultMap="sysMenu">
         <include refid="selectMenuVo"/>
         <where>
             <if test="menuName !=null and menuName!=''">

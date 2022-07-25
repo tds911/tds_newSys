@@ -3,7 +3,7 @@ package ${packageName}.domain;
 import ${import};
 #end
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.om.framework.aspectj.lang.annotation.Excel;
+import com.tds.framework.aspectj.lang.annotation.Excel;
 #if($table.curd)
 #elseif($table.tree)
 #end

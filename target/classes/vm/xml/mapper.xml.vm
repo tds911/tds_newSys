@@ -11,7 +11,7 @@
     </resultMap>
     <sql id="select${ClassName}Vo">
         select#foreach($column in $columns) $column.columnName#if($velocityCount !=$columns.size()),#end#end
-        from${tableName}
+        from ${tableName}
     </sql>
     <select id="select${ClassName}List" parameterType="${ClassName}" resultMap="${ClassName}Result">
         <include refid="select${ClassName}Vo"/>
@@ -70,12 +70,12 @@
         insert into ${tableName}
         <trim prefix="(" suffix=")" suffixOverrides=",">
             #foreach($column in $columns)
-                <if test="$column.javaField !=null#if($column.javaType == 'String' && $column.required) and $column.javaField !=''#end">$column.columnName,</if>
+            <if test="$column.javaField !=null#if($column.javaType == 'String' && $column.required) and $column.javaField !=''#end">$column.columnName,</if>
             #end
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             #foreach($column in $columns)
-                <if test="$column.javaField !=null#if($column.javaType == 'String' && $column.required) and $column.javaField !=''#end">#{$column.javaField},</if>
+            <if test="$column.javaField !=null#if($column.javaType == 'String' && $column.required) and $column.javaField !=''#end">#{$column.javaField},</if>
             #end
         </trim>
     </insert>
@@ -85,7 +85,7 @@
         <trim prefix="SET" suffixOverrides=",">
             #foreach($column in $columns)
                 #if($column.columnName !=$pkColumn.columnName)
-                    <if test="$column.javaField !=null#if($column.javaType == 'String' && $column.required) and $column.javaField !=''#end">$column.columnName =  #{$column.javaField},</if>
+            <if test="$column.javaField !=null#if($column.javaType == 'String' && $column.required) and $column.javaField !=''#end">$column.columnName =  #{$column.javaField},</if>
                 #end
             #end
         </trim>
