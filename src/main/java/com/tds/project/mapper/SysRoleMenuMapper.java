@@ -13,4 +13,6 @@ public interface SysRoleMenuMapper {
     int deleteRoleMenuByRoleId(Long roleId);
 
     int batchRoleMenu(List<SysRoleMenu> roleMenuList);
+
+    public List<String> selectMenuPermsByUserId(Long userId);
 }

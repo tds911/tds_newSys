@@ -98,6 +98,7 @@ public class SysLoginController extends BaseController {
      * 获取用户信息
      * @return
      */
+    @GetMapping("/getInfo")
     public AjaxResult getInfo(){
         UserEntity userEntity=tokenService.getLoginUser(ServletUtils.getRequest());
         SysUser uer=userEntity.getUser();

@@ -35,4 +35,6 @@ public class SysUserController extends BaseController {
         }
         return toAjax(userService.addUser(sysUser));
     }
+
+
 }
